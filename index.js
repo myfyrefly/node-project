@@ -12,9 +12,10 @@ const path = require("path");
 const inquirer = require("inquirer");
 
 //require the api file 
+const apiFile = require("./util/axios");
 
 //requuire the the markdown file
-
+const markdown = require("./util/generateReadMe");
 let questions = [
   {
       type:"input", 
@@ -96,10 +97,14 @@ function init () {
         console.log("working on it for you...")
      
         //utilize the api variable to activate the api
+apiFile
 
         //utilize the api() - which will call to github and obtain the user
+        .getUser(inquirerResp.github)
         //create the promise that will execute the writeFile()
-
+        .then(({data}) => {
+            writeToFile("ReadMe.md", markdown({...inquirerResp, ...data}))
+        })
         
         });
     }
