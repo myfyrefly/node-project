@@ -97,7 +97,7 @@ function init () {
         console.log("working on it for you...")
      
         //utilize the api variable to activate the api
-apiFile
+
 
         //utilize the api() - which will call to github and obtain the user
         .getUser(inquirerResp.github)
