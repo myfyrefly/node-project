@@ -12,7 +12,7 @@ const path = require("path");
 const inquirer = require("inquirer");
 
 //require the api file 
-const apiFile = require("./util/axios");
+const axioS = require("./util/axios");
 
 //requuire the the markdown file
 const markdown = require("./util/generateReadMe");
@@ -94,11 +94,11 @@ function init () {
     //.then = promise function
     inquirer.prompt(questions).then((inquirerResp) => {
 
-        console.log("working on it for you...")
+        console.log("working on it for you...");
      
         //utilize the api variable to activate the api
 
-
+axioS
         //utilize the api() - which will call to github and obtain the user
         .getUser(inquirerResp.github)
         //create the promise that will execute the writeFile()
