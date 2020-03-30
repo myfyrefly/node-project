@@ -1,6 +1,6 @@
 //axios - dotenv - inquirer (install)
 //axios = ajax (alows for api calls)
-//dotenv = allows you to create a .env file and seperate code 
+//dotenv = allows you to create a .env file and separate code 
 
 //Already installed packages: 
     //fs = allows you to utilize files within the folders
@@ -11,11 +11,11 @@ const fs = require("fs");
 const path = require("path");
 const inquirer = require("inquirer");
 
-//require the api file 
-const axioS = require("./util/axios");
+//require the api file **formerly  
+const handleCall = require("./util/axios");
 
-//requuire the the markdown file
-const markdown = require("./util/generateReadMe");
+//require the the markdown file
+const generateMD = require("./util/generateReadMe");
 let questions = [
   {
       type:"input", 
@@ -98,12 +98,12 @@ function init () {
      
         //utilize the api variable to activate the api
 
-axioS
+        handleCall
         //utilize the api() - which will call to github and obtain the user
         .getUser(inquirerResp.github)
         //create the promise that will execute the writeFile()
         .then(({data}) => {
-            writeToFile("ReadMe.md", markdown({...inquirerResp, ...data}))
+            writeToFile("ReadMe.md", generateMD({...inquirerResp, ...data}))
         })
         
         });

@@ -3,8 +3,8 @@ const axios = require("axios");
 require('dotenv').config();
 
 
-
-const axioS = { 
+//formerly called axioS
+const handleCall = { 
     //grab username from user input
     getUser(username)
  {   //begin axios get call
@@ -25,4 +25,4 @@ const axioS = {
 }
 }
 
-module.exports = axioS;
+module.exports = handleCall;
