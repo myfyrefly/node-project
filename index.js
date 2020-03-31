@@ -20,41 +20,36 @@ let questions = [
   {
       type:"input", 
       name: "github",
-      message: "what is your github username?"
+      message: "What is your Github username?"
   } ,
   {
       type:"input",
       name: "title",
-      message: "What is your project's name?"
+      message: "What is your project's title?"
   } ,
   {
     type:"input",
     name: "description",
-    message: "Describe your project:"
-  } ,
-  {
-    type:"input",
-    name: "table of contents",
-    message: "Does your project have a table of contents?"
+    message: "Briefly describe your project:"
   } ,
   {
     type:"input",
     name: "installation",
-    message: "Are there additional technologies that need installation?",
+    message: "What command should be run to install dependencies?",
     //create a defult option indiating npm i as the value
     default: "npm i"
   } ,
   {
     type:"input",
     name: "usage",
-    message: "Is there a usage condition?"
+    message: "What does the user need to know about using this repo?"
   } ,
   {
-    type:"input",
+    type:"list",
     name: "license",
     message: "Is there a license?",
     //provide choices using an array
-    choices: ["Apache", "MIT", "None" ]
+    choices: ["Apache", "MIT", "None"]
   } ,
   {
     type:"input",
@@ -64,28 +59,33 @@ let questions = [
   {
     type:"input",
     name: "tests",
-    message: "Command To Run Test?",
+    message: "Command to run tests?",
     //provide a default options with the value of "npm start"
     default: "npm start"
   } ,
   {
     type:"input",
-    name: "profile pic",
-    message: "Do you have a github profile pic?"
+    name: "questions",
+    message: "How do you want to handle questions about your project?"
   } 
 ];
 //Create a fucntion that will write the data to a file 
 function writeToFile(fileName, data){
     //one line hitter
-    return 
+    return fs.writeFileSync(path.join(process.cwd(), fileName),data);
+
+}
+
+
+
     //Requiring fs's premade file creating function (writeFileSyn)
-    fs.writeFileSync
+   
     //utilize  the following path to create the desired file 
         //process.cwd() - allows for the process of the file to be executed (important function to actually create the file)
         //it will obtain the fileName (ReadeME) during the process 
 
-    (path.join(process.cwd(), fileName),data);
-}
+    
+
 
 
 //Create a function that will start prompting the questions in order to generate the ReadMe
@@ -99,11 +99,11 @@ function init () {
         //utilize the api variable to activate the api
 
         handleCall
-        //utilize the api() - which will call to github and obtain the user
-        .getUser(inquirerResp.github)
-        //create the promise that will execute the writeFile()
-        .then(({data}) => {
-            writeToFile("ReadMe.md", generateMD({...inquirerResp, ...data}))
+          //utilize the api() - which will call to github and obtain the user
+          .getUser(inquirerResp.github)
+          //create the promise that will execute the writeFile()
+          .then(({data}) => {
+              writeToFile("ReadMe.md", generateMD({...inquirerResp, ...data}))
         })
         
         });

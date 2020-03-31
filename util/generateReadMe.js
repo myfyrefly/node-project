@@ -10,8 +10,9 @@ function generateURL (github, title) {
 //Function 2
 //Render the license badge 
 //Paramaters that will need to be used: 
-    //license, github, title
+//license, github, title
 //What type of function? if and return
+
 function badgeImg(license, github, title) {
     if(license !== "none") {
         return `[![GitHub license](https://img.shields.io/badge/license-${license}-blue.svg)](${generateURL(github, title)})`
@@ -40,11 +41,25 @@ function licenseHeading (license) {
 
 function generateMD (data) {
     return `
-    #Title ${data.title}
+    ## Title 
+    ${data.title}
     ${badgeImg(data.license, data.github, data.title)}
-    #Description
+    ## Description
     ${data.description}
     ${licenseHeading(data.license)}
+    ## Table of Contents
+    ## Installation
+    ${data.installation}
+    ## Usage
+    * ${data.usage}
+    ## License
+    * ${data.license}
+    ## Contributions
+    * ${data.contributing}
+    ## Tests
+    * ${data.tests}
+    ## Questions
+    * ${data.questions}
     `
 }
 
